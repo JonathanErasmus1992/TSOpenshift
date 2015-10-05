@@ -10,11 +10,10 @@ import toystore.domain.Orderline;
  */
 public class ItemFactory {
 
-    public static Item createItem(Long ID,String name, String category,int quantity, float price, List<Orderline> orderlines)
+    public static Item createItem(String name, String category,int quantity, float price, List<Orderline> orderlines)
     {
         Item item = new Item
-                .Builder(ID)
-                .name(name)
+                .Builder(name)
                 .category(category)
                 .quantity(quantity)
                 .price(price)

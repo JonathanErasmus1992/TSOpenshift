@@ -7,11 +7,10 @@ import toystore.domain.Orderline;
  */
 public class OrderlineFactory {
 
-    public static Orderline createOrderline(Long ID,int quantity)
+    public static Orderline createOrderline(int quantity)
     {
         Orderline orderline = new Orderline
-                .Builder(ID)
-                .quantity(quantity)
+                .Builder(quantity)
                 .build();
         return orderline;
     }

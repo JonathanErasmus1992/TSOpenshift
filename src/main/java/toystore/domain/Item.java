@@ -71,14 +71,14 @@ public class Item implements ItemDetails, Serializable{
         private float price;
         private List<Orderline> orderlines;
 
-        public Builder(Long ID)
-        {
-            this.ID=ID;
-        }
-
-        public Builder name(String name)
+        public Builder(String name)
         {
             this.name=name;
+        }
+
+        public Builder ID(Long ID)
+        {
+            this.ID=ID;
             return this;
         }
 
@@ -106,14 +106,14 @@ public class Item implements ItemDetails, Serializable{
             return this;
         }
 
-        public Builder copy(Item Item)
+        public Builder copy(Item item)
         {
-            this.ID=Item.getID();
-            this.name=Item.getName();
-            this.category=Item.getCategory();
-            this.quantity=Item.getQuantity();
-            this.price=Item.getPrice();
-            this.orderlines=Item.getOrderlines();
+            this.ID=item.getID();
+            this.name=item.getName();
+            this.category=item.getCategory();
+            this.quantity=item.getQuantity();
+            this.price=item.getPrice();
+            this.orderlines=item.getOrderlines();
             return this;
         }
 

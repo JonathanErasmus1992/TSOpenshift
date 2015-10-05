@@ -10,11 +10,10 @@ import toystore.domain.Order;
  */
 public class CustomerFactory {
 
-    public static Customer createCustomer(String userName,Long ID,String password,String firstName, String lastName, String idNumber, String contact, List<Order> orders)
+    public static Customer createCustomer(String userName,String password,String firstName, String lastName, String idNumber, String contact, List<Order> orders)
     {
         Customer customer = new Customer
                 .Builder(userName)
-                .ID(ID)
                 .password(password)
                 .firstName(firstName)
                 .lastName(lastName)

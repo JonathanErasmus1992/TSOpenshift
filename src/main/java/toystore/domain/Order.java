@@ -58,14 +58,14 @@ public class Order implements OrderDetails, Serializable{
         private Boolean checkout;
         private List<Orderline> orderlines;
 
-        public Builder(Long ID)
-        {
-            this.ID=ID;
-        }
-
-        public Builder dateModified(Date dateModified)
+        public Builder(Date dateModified)
         {
             this.dateModified=dateModified;
+        }
+
+        public Builder ID(Long ID)
+        {
+            this.ID=ID;
             return this;
         }
 

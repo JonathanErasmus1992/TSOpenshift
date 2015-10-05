@@ -11,11 +11,10 @@ import toystore.domain.Orderline;
  */
 public class OrderFactory {
 
-    public static Order createOrder(Long ID,Date dateModified, float totalPrice, Boolean checkout, List<Orderline> orderlines)
+    public static Order createOrder(Date dateModified, float totalPrice, Boolean checkout, List<Orderline> orderlines)
     {
         Order order = new Order
-                .Builder(ID)
-                .dateModified(dateModified)
+                .Builder(dateModified)
                 .totalPrice(totalPrice)
                 .checkout(checkout)
                 .orderlines(orderlines)

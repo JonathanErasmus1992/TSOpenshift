@@ -40,14 +40,20 @@ public class Orderline implements OrderlineDetails, Serializable{
         private Long ID;
         private int quantity;
 
-        public Builder(Long ID)
+        public Builder(int quantity)
         {
-            this.ID=ID;
+            this.quantity=quantity;
         }
 
         public Builder quantity(int quantity)
         {
             this.quantity=quantity;
+            return this;
+        }
+
+        public Builder ID(Long ID)
+        {
+            this.ID=ID;
             return this;
         }
 
