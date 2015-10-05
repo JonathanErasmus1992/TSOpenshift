@@ -2,24 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestSuite">
-    <test name="CustomerDomain">
+    <test name="Dummy">
         <classes>
             <class name="toystore.domain.testCustomer" />
         </classes>
     </test>
-    <test name="ItemDomain">
-        <classes>
-            <class name="toystore.domain.testItem"/>
-        </classes>
-    </test>
-    <test name="OrderDomain">
-        <classes>
-            <class name="toystore.domain.testOrder"/>
-        </classes>
-    </test>
-    <test name="OrderlineDomain">
-        <classes>
-            <class name="toystore.domain.testOrderline"/>
-        </classes>
-    </test>
+
 </suite>
