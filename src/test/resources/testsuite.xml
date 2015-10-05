@@ -2,14 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestSuite">
-    <test name="CustomerCrud">
+    <test name="OrderlineCrud">
         <classes>
-            <class name="toystore.repository.testCustomerCrudRepository" />
-        </classes>
-    </test>
-    <test name="ItemCrud">
-        <classes>
-            <class name="toystore.repository.testItemCrudRepository" />
+            <class name="toystore.repository.testOrderlineCrudRepository" />
         </classes>
     </test>
     <test name="OrderCrud">
@@ -17,10 +12,14 @@
             <class name="toystore.repository.testOrderCrudRepository" />
         </classes>
     </test>
-    <test name="OrderlineCrud">
+    <test name="ItemCrud">
         <classes>
-            <class name="toystore.repository.testOrderlineCrudRepository" />
+            <class name="toystore.repository.testItemCrudRepository" />
         </classes>
     </test>
-
+    <test name="CustomerCrud">
+        <classes>
+            <class name="toystore.repository.testCustomerCrudRepository" />
+        </classes>
+    </test>
 </suite>

@@ -2,24 +2,24 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestSuite">
-    <test name="CustomerDomain">
+    <test name="OrderlineCrud">
         <classes>
-            <class name="toystore.domain.testCustomer" />
+            <class name="toystore.repository.testOrderlineCrudRepository" />
         </classes>
     </test>
-    <test name="ItemDomain">
+    <test name="OrderCrud">
         <classes>
-            <class name="toystore.domain.testItem"/>
+            <class name="toystore.repository.testOrderCrudRepository" />
         </classes>
     </test>
-    <test name="OrderDomain">
+    <test name="ItemCrud">
         <classes>
-            <class name="toystore.domain.testOrder"/>
+            <class name="toystore.repository.testItemCrudRepository" />
         </classes>
     </test>
-    <test name="OrderlineDomain">
+    <test name="CustomerCrud">
         <classes>
-            <class name="toystore.domain.testOrderline"/>
+            <class name="toystore.repository.testCustomerCrudRepository" />
         </classes>
     </test>
 </suite>

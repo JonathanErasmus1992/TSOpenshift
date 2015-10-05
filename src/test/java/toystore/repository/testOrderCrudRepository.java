@@ -22,10 +22,11 @@ import toystore.domain.Orderline;
 @WebAppConfiguration
 public class testOrderCrudRepository extends AbstractTestNGSpringContextTests{
     private Long id;
-    private Date date;
+    private Date date = new Date();
     private List<Orderline> orderlines;
     @Autowired
     OrderRepository repository;
+
 
     @Test
     public void testCreate()
