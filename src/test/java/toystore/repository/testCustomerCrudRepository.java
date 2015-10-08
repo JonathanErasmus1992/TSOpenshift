@@ -12,7 +12,7 @@ import java.util.List;
 import toystore.App;
 import toystore.conf.CustomerFactory;
 import toystore.domain.Customer;
-import toystore.domain.Order;
+import toystore.domain.Orders;
 
 /**
  * Created by Thawhir on 2015/10/05.
@@ -21,7 +21,7 @@ import toystore.domain.Order;
 @WebAppConfiguration
 public class testCustomerCrudRepository extends AbstractTestNGSpringContextTests{
     private Long id;
-    private List<Order> orders;
+    private List<Orders> orders;
     @Autowired
     CustomerRepository repository;
 

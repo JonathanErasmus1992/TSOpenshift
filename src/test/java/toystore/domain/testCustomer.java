@@ -13,7 +13,7 @@ import java.util.List;
 
 public class testCustomer{
     private Customer customer;
-    private List<Order> orders;
+    private List<Orders> orders;
 
     @Before
     public void setUp()

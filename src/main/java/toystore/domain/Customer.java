@@ -18,7 +18,7 @@ public class Customer implements CustomerDetails, Serializable{
     private String contact;
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name="customer_id")
-    private List<Order> orders;
+    private List<Orders> orders;
 
     private Customer()
     {
@@ -69,7 +69,7 @@ public class Customer implements CustomerDetails, Serializable{
         return this.contact;
     }
     @Override
-    public List<Order> getOrders()
+    public List<Orders> getOrders()
     {
         return this.orders;
     }
@@ -83,7 +83,7 @@ public class Customer implements CustomerDetails, Serializable{
         private String lastName;
         private String idNumber;
         private String contact;
-        private List<Order> orders;
+        private List<Orders> orders;
 
         public Builder(String userName)
         {
@@ -126,7 +126,7 @@ public class Customer implements CustomerDetails, Serializable{
             return this;
         }
 
-        public Builder orders(List<Order> orders)
+        public Builder orders(List<Orders> orders)
         {
             this.orders=orders;
             return this;

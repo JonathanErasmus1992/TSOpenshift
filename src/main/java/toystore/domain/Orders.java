@@ -7,7 +7,7 @@ import java.util.List;
 
 
 @Entity
-public class Order implements OrderDetails, Serializable{
+public class Orders implements OrderDetails, Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
@@ -18,12 +18,12 @@ public class Order implements OrderDetails, Serializable{
     @JoinColumn(name="order_id")
     private List<Orderline> orderlines;
 
-    private Order()
+    private Orders()
     {
 
     }
 
-    public Order(Builder builder)
+    public Orders(Builder builder)
     {
         this.ID=builder.ID;
         this.dateModified=builder.dateModified;
@@ -88,7 +88,7 @@ public class Order implements OrderDetails, Serializable{
         }
 
 
-        public Builder copy(Order order)
+        public Builder copy(Orders order)
         {
             this.ID=order.getID();
             this.dateModified=order.getDateModified();
@@ -98,9 +98,9 @@ public class Order implements OrderDetails, Serializable{
             return this;
         }
 
-        public Order build()
+        public Orders build()
         {
-            return new Order(this);
+            return new Orders(this);
         }
     }
 }

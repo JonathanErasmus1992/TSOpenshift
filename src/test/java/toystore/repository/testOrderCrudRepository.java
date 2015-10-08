@@ -12,7 +12,7 @@ import java.util.List;
 
 import toystore.App;
 import toystore.conf.OrderFactory;
-import toystore.domain.Order;
+import toystore.domain.Orders;
 import toystore.domain.Orderline;
 
 /**
@@ -31,7 +31,7 @@ public class testOrderCrudRepository extends AbstractTestNGSpringContextTests{
     @Test
     public void testCreate()
     {
-        Order order = OrderFactory.createOrder(date, 200, false, orderlines);
+        Orders order = OrderFactory.createOrder(date, 200, false, orderlines);
         repository.save(order);
         id = order.getID();
         Assert.assertNotNull(order);
@@ -40,32 +40,32 @@ public class testOrderCrudRepository extends AbstractTestNGSpringContextTests{
     @Test(dependsOnMethods = "testCreate")
     public void testRead()
     {
-        Order order = repository.findOne(id);
-        Assert.assertEquals(order.getDateModified(), date);
+        Orders order = repository.findOne(id);
+        Assert.assertEquals(order.getCheckout(), false);
     }
 
     @Test(dependsOnMethods = "testRead")
     public void testUpdate()
     {
-        Order order = repository.findOne(id);
-        Order newOrder = new Order
+        Orders order = repository.findOne(id);
+        Orders newOrders = new Orders
                 .Builder(order.getDateModified())
                 .copy(order)
                 .totalPrice(300)
                 .build();
-        repository.save(newOrder);
+        repository.save(newOrders);
 
-        Order updatedOrder = repository.findOne(id);
-        Assert.assertNotEquals(order.getTotalPrice(),updatedOrder.getTotalPrice());
+        Orders updatedOrders = repository.findOne(id);
+        Assert.assertNotEquals(order.getTotalPrice(),updatedOrders.getTotalPrice());
     }
 
     @Test(dependsOnMethods = "testUpdate")
     public void testDelete()
     {
-        Order order = repository.findOne(id);
+        Orders order = repository.findOne(id);
         repository.delete(order);
-        Order newOrder = repository.findOne(id);
-        Assert.assertNull(newOrder);
+        Orders newOrders = repository.findOne(id);
+        Assert.assertNull(newOrders);
     }
 
 }

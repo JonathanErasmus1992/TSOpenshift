@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 public class testOrder {
-    private Order order;
+    private Orders order;
     private Date date;
     private List<Orderline> orderlines;
 
@@ -32,13 +32,13 @@ public class testOrder {
     @Test
     public void testUpdate()
     {
-        Order newOrder = new Order
+        Orders newOrders = new Orders
                                 .Builder(order.getDateModified())
                                 .copy(order)
                                 .checkout(true)
                                 .build();
-        Assert.assertEquals(order.getDateModified(),newOrder.getDateModified());
-        Assert.assertNotEquals(order.getCheckout(),newOrder.getCheckout());
+        Assert.assertEquals(order.getDateModified(),newOrders.getDateModified());
+        Assert.assertNotEquals(order.getCheckout(),newOrders.getCheckout());
     }
 
     @After

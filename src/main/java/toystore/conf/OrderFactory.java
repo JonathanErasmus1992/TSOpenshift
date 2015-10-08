@@ -3,7 +3,7 @@ package toystore.conf;
 import java.util.Date;
 import java.util.List;
 
-import toystore.domain.Order;
+import toystore.domain.Orders;
 import toystore.domain.Orderline;
 
 /**
@@ -11,9 +11,9 @@ import toystore.domain.Orderline;
  */
 public class OrderFactory {
 
-    public static Order createOrder(Date dateModified, float totalPrice, Boolean checkout, List<Orderline> orderlines)
+    public static Orders createOrder(Date dateModified, float totalPrice, Boolean checkout, List<Orderline> orderlines)
     {
-        Order order = new Order
+        Orders order = new Orders
                 .Builder(dateModified)
                 .totalPrice(totalPrice)
                 .checkout(checkout)

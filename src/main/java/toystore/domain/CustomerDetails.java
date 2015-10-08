@@ -13,5 +13,5 @@ public interface CustomerDetails {
     public String getLastName();
     public String getIdNumber();
     public String getContact();
-    public List<Order> getOrders();
+    public List<Orders> getOrders();
 }
