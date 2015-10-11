@@ -12,23 +12,22 @@ import java.util.List;
 import toystore.App;
 import toystore.conf.CustomerFactory;
 import toystore.domain.Customer;
+import toystore.domain.Invoice;
 import toystore.domain.Orders;
 
-/**
- * Created by Thawhir on 2015/10/05.
- */
 @SpringApplicationConfiguration(classes = App.class)
 @WebAppConfiguration
 public class testCustomerCrudRepository extends AbstractTestNGSpringContextTests{
     private Long id;
     private List<Orders> orders;
+    private List<Invoice> invoices;
     @Autowired
     CustomerRepository repository;
 
     @Test
     public void testCreate()
     {
-        Customer customer = CustomerFactory.createCustomer("Redc","password","Thawhir","Jakoet","12345","12345",orders);
+        Customer customer = CustomerFactory.createCustomer("Redc","password","Thawhir","Jakoet","12345","12345",orders,invoices);
         repository.save(customer);
         id = customer.getID();
         Assert.assertNotNull(customer);

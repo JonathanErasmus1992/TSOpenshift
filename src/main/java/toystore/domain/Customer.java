@@ -19,6 +19,9 @@ public class Customer implements CustomerDetails, Serializable{
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name="customer_id")
     private List<Orders> orders;
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name="customer_id")
+    private List<Invoice> invoices;
 
     private Customer()
     {
@@ -35,6 +38,7 @@ public class Customer implements CustomerDetails, Serializable{
         this.idNumber=builder.idNumber;
         this.contact=builder.contact;
         this.orders=builder.orders;
+        this.invoices=builder.invoices;
     }
     @Override
     public Long getID()
@@ -73,6 +77,11 @@ public class Customer implements CustomerDetails, Serializable{
     {
         return this.orders;
     }
+    @Override
+    public List<Invoice> getInvoices()
+    {
+        return this.invoices;
+    }
 
     public static class Builder
     {
@@ -84,6 +93,7 @@ public class Customer implements CustomerDetails, Serializable{
         private String idNumber;
         private String contact;
         private List<Orders> orders;
+        private List<Invoice> invoices;
 
         public Builder(String userName)
         {
@@ -132,6 +142,12 @@ public class Customer implements CustomerDetails, Serializable{
             return this;
         }
 
+        public Builder invoices(List<Invoice> invoices)
+        {
+            this.invoices=invoices;
+            return this;
+        }
+
 
 
         public Builder copy(Customer Customer)
@@ -144,6 +160,7 @@ public class Customer implements CustomerDetails, Serializable{
             this.idNumber=Customer.getIdNumber();
             this.contact=Customer.getContact();
             this.orders=Customer.getOrders();
+            this.invoices=Customer.getInvoices();
             return this;
         }
 

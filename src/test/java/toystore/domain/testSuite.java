@@ -1,8 +1,5 @@
 package toystore.domain;
 
-/**
- * Created by Thawhir on 2015/10/05.
- */
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 @RunWith(Suite.class)
@@ -10,7 +7,8 @@ import org.junit.runners.Suite;
         testCustomer.class,
         testItem.class,
         testOrder.class,
-        testOrderline.class
+        testOrderline.class,
+        testInvoice.class
 })
 public class testSuite {
 }

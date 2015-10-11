@@ -11,9 +11,6 @@ import toystore.App;
 import toystore.conf.OrderlineFactory;
 import toystore.domain.Orderline;
 
-/**
- * Created by Thawhir on 2015/10/05.
- */
 @SpringApplicationConfiguration(classes = App.class)
 @WebAppConfiguration
 public class testOrderlineCrudRepository extends AbstractTestNGSpringContextTests{

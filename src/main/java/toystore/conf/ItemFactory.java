@@ -5,9 +5,6 @@ import java.util.List;
 import toystore.domain.Item;
 import toystore.domain.Orderline;
 
-/**
- * Created by Thawhir on 2015/10/05.
- */
 public class ItemFactory {
 
     public static Item createItem(String name, String category,int quantity, float price, List<Orderline> orderlines)

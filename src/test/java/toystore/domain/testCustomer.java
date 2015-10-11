@@ -1,8 +1,5 @@
 package toystore.domain;
 
-/**
- * Created by Thawhir on 2015/10/05.
- */
 import toystore.conf.CustomerFactory;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,11 +11,12 @@ import java.util.List;
 public class testCustomer{
     private Customer customer;
     private List<Orders> orders;
+    private List<Invoice> invoices;
 
     @Before
     public void setUp()
     {
-        customer = CustomerFactory.createCustomer("Redc","password","Thawhir","Jakoet","12345","12345",orders);
+        customer = CustomerFactory.createCustomer("Redc","password","Thawhir","Jakoet","12345","12345",orders,invoices);
     }
 
     @Test

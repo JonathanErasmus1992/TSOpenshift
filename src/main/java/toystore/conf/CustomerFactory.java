@@ -4,13 +4,11 @@ import java.util.List;
 
 import toystore.domain.Customer;
 import toystore.domain.Orders;
+import toystore.domain.Invoice;
 
-/**
- * Created by Thawhir on 2015/10/05.
- */
 public class CustomerFactory {
 
-    public static Customer createCustomer(String userName,String password,String firstName, String lastName, String idNumber, String contact, List<Orders> orders)
+    public static Customer createCustomer(String userName,String password,String firstName, String lastName, String idNumber, String contact, List<Orders> orders, List<Invoice> invoices)
     {
         Customer customer = new Customer
                 .Builder(userName)
@@ -20,6 +18,7 @@ public class CustomerFactory {
                 .idNumber(idNumber)
                 .contact(contact)
                 .orders(orders)
+                .invoices(invoices)
                 .build();
         return customer;
     }
