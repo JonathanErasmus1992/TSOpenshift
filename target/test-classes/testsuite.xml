@@ -22,4 +22,9 @@
             <class name="toystore.repository.testCustomerCrudRepository" />
         </classes>
     </test>
+    <test name="InvoiceCrud">
+        <classes>
+            <class name="toystore.repository.testInvoiceCrudRepository" />
+        </classes>
+    </test>
 </suite>

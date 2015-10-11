@@ -13,7 +13,7 @@ public class Invoice implements InvoiceDetails, Serializable{
     private Long ID;
     private Long orderID;
     private float totalPrice;
-    private List<HashMap<String,String>> items;
+    private List<Orderline> orderlines;
 
 
     private Invoice()
@@ -26,7 +26,7 @@ public class Invoice implements InvoiceDetails, Serializable{
         this.ID=builder.ID;
         this.orderID=builder.orderID;
         this.totalPrice=builder.totalPrice;
-        this.items=builder.items;
+        this.orderlines=builder.orderlines;
 
     }
     @Override
@@ -45,9 +45,9 @@ public class Invoice implements InvoiceDetails, Serializable{
         return this.totalPrice;
     }
     @Override
-    public List<HashMap<String,String>> getItems()
+    public List<Orderline> getOrderlines()
     {
-        return this.items;
+        return this.orderlines;
     }
 
 
@@ -56,7 +56,7 @@ public class Invoice implements InvoiceDetails, Serializable{
         private Long ID;
         private Long orderID;
         private float totalPrice;
-        private List<HashMap<String,String>> items;
+        private List<Orderline> orderlines;
 
         public Builder(Long orderID)
         {
@@ -81,9 +81,9 @@ public class Invoice implements InvoiceDetails, Serializable{
             return this;
         }
 
-        public Builder items(List<HashMap<String,String>> items)
+        public Builder orderlines(List<Orderline> orderlines)
         {
-            this.items=items;
+            this.orderlines=orderlines;
             return this;
         }
 
@@ -92,7 +92,7 @@ public class Invoice implements InvoiceDetails, Serializable{
             this.ID=invoice.getID();
             this.orderID=invoice.getOrderID();
             this.totalPrice=invoice.getTotalPrice();
-            this.items=invoice.getItems();
+            this.orderlines=invoice.getOrderlines();
             return this;
         }
 

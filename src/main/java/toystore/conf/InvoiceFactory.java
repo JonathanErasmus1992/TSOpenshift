@@ -1,18 +1,18 @@
 package toystore.conf;
 
-import java.util.HashMap;
 import java.util.List;
 
 import toystore.domain.Invoice;
+import toystore.domain.Orderline;
 
 public class InvoiceFactory {
 
-    public static Invoice createInvoice(Long orderID, float totalPrice, List<HashMap<String,String>> items)
+    public static Invoice createInvoice(Long orderID, float totalPrice, List<Orderline> orderlines)
     {
         Invoice invoice = new Invoice
                 .Builder(orderID)
                 .totalPrice(totalPrice)
-                .items(items)
+                .orderlines(orderlines)
                 .build();
         return invoice;
     }

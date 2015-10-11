@@ -7,18 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 import org.junit.Assert;
 
-import java.util.HashMap;
 import java.util.List;
 
 import toystore.App;
 import toystore.conf.InvoiceFactory;
 import toystore.domain.Invoice;
+import toystore.domain.Orderline;
 
 @SpringApplicationConfiguration(classes = App.class)
 @WebAppConfiguration
 public class testInvoiceCrudRepository extends AbstractTestNGSpringContextTests{
     private Long id;
-    private List<HashMap<String,String>> items;
+    private List<Orderline> orderlines;
     private long lo = 1;
     private long updatedLo = 2;
     @Autowired
@@ -27,7 +27,7 @@ public class testInvoiceCrudRepository extends AbstractTestNGSpringContextTests{
     @Test
     public void testCreate()
     {
-        Invoice invoice = InvoiceFactory.createInvoice(lo, 200, items);
+        Invoice invoice = InvoiceFactory.createInvoice(lo, 200, orderlines);
         repository.save(invoice);
         id = invoice.getID();
         Assert.assertNotNull(invoice);
@@ -37,7 +37,7 @@ public class testInvoiceCrudRepository extends AbstractTestNGSpringContextTests{
     public void testRead()
     {
         Invoice invoice = repository.findOne(id);
-        Assert.assertEquals(invoice.getItems(), items);
+        Assert.assertEquals(invoice.getOrderlines(), orderlines);
     }
 
     @Test(dependsOnMethods = "testRead")
