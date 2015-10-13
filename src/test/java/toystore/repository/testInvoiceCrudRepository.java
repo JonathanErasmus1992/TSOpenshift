@@ -37,7 +37,7 @@ public class testInvoiceCrudRepository extends AbstractTestNGSpringContextTests{
     public void testRead()
     {
         Invoice invoice = repository.findOne(id);
-        Assert.assertEquals(invoice.getOrderlines(), orderlines);
+        Assert.assertEquals(invoice.getTotalPrice(), 200, 0.001);
     }
 
     @Test(dependsOnMethods = "testRead")

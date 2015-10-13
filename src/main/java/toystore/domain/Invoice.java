@@ -3,7 +3,6 @@ package toystore.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
 
 @Entity
@@ -13,6 +12,8 @@ public class Invoice implements InvoiceDetails, Serializable{
     private Long ID;
     private Long orderID;
     private float totalPrice;
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name="invoice_id")
     private List<Orderline> orderlines;
 
 
