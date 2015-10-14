@@ -20,29 +20,30 @@ import toystore.repository.CustomerRepository;
 
 @SpringApplicationConfiguration(classes = App.class)
 @WebAppConfiguration
-public class testLoginService extends AbstractTestNGSpringContextTests {
+public class testRegistrationService extends AbstractTestNGSpringContextTests{
     @Autowired
     CustomerRepository customerRepository;
     @Autowired
-    LoginService loginService;
-
+    RegistrationService registrationService;
+    Customer customer;
     private List<Orders> orders;
     private List<Invoice> invoices;
-    private Customer customer;
+
 
     @BeforeMethod
     public void setUp()
     {
-        customer = CustomerFactory.createCustomer("JSME","password","Jonathan","Erasmus","12345","12345",orders,invoices);
-        customerRepository.save(customer);
+        customer = CustomerFactory.createCustomer("JSME", "password", "Jonathan", "Erasmus", "12345", "12345", orders, invoices);
     }
 
     @Test
-    public void testLogin()
+    public void testRegistration()
     {
-        Customer lcustomer = loginService.Login("JSME","password");
-        Assert.assertNotNull(lcustomer);
-        Assert.assertEquals(customer.getFirstName(), lcustomer.getFirstName());
+        boolean bool;
+        bool = registrationService.Register("JSME", "password", "Jonathan", "Erasmus", "12345", "12345");
+        Assert.assertEquals(bool, true);
+        bool = registrationService.Register("JSME", "password", "Jonathan", "Erasmus", "12345", "12345");
+        Assert.assertEquals(bool, false);
     }
 
     @AfterMethod
@@ -50,5 +51,4 @@ public class testLoginService extends AbstractTestNGSpringContextTests {
     {
         customerRepository.delete(customer);
     }
-
 }
