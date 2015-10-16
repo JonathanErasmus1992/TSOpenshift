@@ -20,7 +20,7 @@ import toystore.repository.ItemRepository;
 
 @SpringApplicationConfiguration(classes = App.class)
 @WebAppConfiguration
-public class testViewItemsByCategory extends AbstractTestNGSpringContextTests {
+public class testViewItemsByCategoryService extends AbstractTestNGSpringContextTests {
     @Autowired
     ItemRepository itemRepository;
     @Autowired
