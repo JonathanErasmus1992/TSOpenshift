@@ -32,6 +32,7 @@ public class EmptyOrderService implements EmptyOrderDetails{
                     .Builder(orders.getDateModified())
                     .copy(orders)
                     .dateModified(new Date())
+                    .totalPrice(0)
                     .orderlines(orderlines)
                     .build();
         return true;
