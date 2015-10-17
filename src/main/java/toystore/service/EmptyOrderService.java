@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.criteria.Order;
-
 import toystore.domain.Orderline;
 import toystore.domain.Orders;
 import toystore.repository.OrderRepository;
@@ -30,10 +28,10 @@ public class EmptyOrderService implements EmptyOrderDetails{
             return false;
         for(Orderline orderline: orders.getOrderlines())
             orderlineRepository.delete(orderline);
-        //need to add a dateModified option to Orders
         orders = new Orders
-                    .Builder(new Date())
+                    .Builder(orders.getDateModified())
                     .copy(orders)
+                    .dateModified(new Date())
                     .orderlines(orderlines)
                     .build();
         return true;

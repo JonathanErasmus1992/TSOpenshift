@@ -13,6 +13,7 @@ public class OrderFactory {
         Orders order = new Orders
                 .Builder(dateModified)
                 .totalPrice(totalPrice)
+                .dateModified(dateModified)
                 .checkout(checkout)
                 .orderlines(orderlines)
                 .build();

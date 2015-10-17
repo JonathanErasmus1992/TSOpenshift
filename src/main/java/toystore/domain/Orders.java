@@ -69,6 +69,12 @@ public class Orders implements OrderDetails, Serializable{
             return this;
         }
 
+        public Builder dateModified(Date dateModified)
+        {
+            this.dateModified=dateModified;
+            return this;
+        }
+
         public Builder totalPrice(float totalPrice)
         {
             this.totalPrice=totalPrice;
