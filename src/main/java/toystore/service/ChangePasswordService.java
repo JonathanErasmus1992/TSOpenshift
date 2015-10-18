@@ -14,9 +14,9 @@ public class ChangePasswordService implements ChangePasswordDetails {
     private Customer customer;
     private Customer newCustomer;
     @Override
-    public boolean changePassword(Long id, String newPassword)
+    public boolean changePassword(Long customerid, String newPassword)
     {
-        customer = customerRepository.findOne(id);
+        customer = customerRepository.findOne(customerid);
             if(customer==null)
                 return false;
         newCustomer = new Customer
