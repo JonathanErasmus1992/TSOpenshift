@@ -80,13 +80,14 @@ public class testAddOrderlineService extends AbstractTestNGSpringContextTests{
         for(Orderline orderlineit: orderlinsi)
             orderline = orderlineit;
     }
-
+    //turned this into a test so that I could use TestNG-sorting, this is actually the tearDown() method
     @Test(dependsOnMethods = "testAddOrderline")
     public void deleteThem()
     {
         orderlineRepository.delete(orderline);
         orderRepository.delete(order);
         itemRepository.delete(item);
+        Assert.assertTrue(true);
     }
 
     @After
