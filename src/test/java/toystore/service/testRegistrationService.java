@@ -1,5 +1,7 @@
 package toystore.service;
 
+import org.junit.After;
+import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -30,10 +32,9 @@ public class testRegistrationService extends AbstractTestNGSpringContextTests{
     private List<Invoice> invoices;
 
 
-    @BeforeMethod
+    @Before
     public void setUp()
     {
-        customer = CustomerFactory.createCustomer("JSME", "password", "Jonathan", "Erasmus", "12345", "12345", orders, invoices);
     }
 
     @Test
@@ -41,14 +42,21 @@ public class testRegistrationService extends AbstractTestNGSpringContextTests{
     {
         boolean bool;
         bool = registrationService.Register("JSME", "password", "Jonathan", "Erasmus", "12345", "12345");
-        Assert.assertEquals(bool, true);
+        Assert.assertTrue(bool);
         bool = registrationService.Register("JSME", "password", "Jonathan", "Erasmus", "12345", "12345");
-        Assert.assertEquals(bool, false);
+        Assert.assertFalse(bool);
     }
 
-    @AfterMethod
+    @After
     public void tearDown()
     {
-        customerRepository.delete(customer);
+        Long id = Long.parseLong("0");
+        Iterable<Customer> customers = customerRepository.findAll();
+        for(Customer customeri: customers)
+        {
+            if(customeri.getID()>id)
+                id = customeri.getID();
+        }
+        customerRepository.delete(id);
     }
 }

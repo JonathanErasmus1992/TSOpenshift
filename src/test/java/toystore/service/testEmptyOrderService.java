@@ -102,12 +102,18 @@ public class testEmptyOrderService extends AbstractTestNGSpringContextTests{
         order = orderRepository.findOne(order.getID());
         Assert.assertEquals(order.getOrderlines().size(),0);
     }
-
-    @After
-    public void tearDown()
+    //turned this into a test so that I could use TestNG-sorting, this is actually the tearDown() method
+    @Test(dependsOnMethods = "testEmptyOrder")
+    public void deleteThem()
     {
         orderlineRepository.delete(orderline);
         itemRepository.delete(item);
         orderRepository.delete(order);
+        Assert.assertTrue(true);
+    }
+    @After
+    public void tearDown()
+    {
+
     }
 }

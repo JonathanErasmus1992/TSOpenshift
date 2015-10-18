@@ -27,4 +27,59 @@
             <class name="toystore.repository.testInvoiceCrudRepository" />
         </classes>
     </test>
+<test name="AddItemService">
+    <classes>
+        <class name="toystore.service.testAddItemService" />
+    </classes>
+</test>
+<test name="AddItemStockService">
+    <classes>
+        <class name="toystore.service.testAddItemStockService" />
+    </classes>
+</test>
+<test name="AddOrderlineService">
+    <classes>
+        <class name="toystore.service.testAddOrderlineService" />
+    </classes>
+</test>
+<test name="AddOrderService">
+    <classes>
+        <class name="toystore.service.testAddOrderService" />
+    </classes>
+</test>
+<test name="ChangePasswordService">
+    <classes>
+        <class name="toystore.service.testChangePasswordService" />
+    </classes>
+</test>
+<test name="DeleteOrderlineService">
+    <classes>
+        <class name="toystore.service.testDeleteOrderlineService" />
+    </classes>
+</test>
+<test name="EmptyOrderService">
+    <classes>
+        <class name="toystore.service.testEmptyOrderService" />
+    </classes>
+</test>
+<test name="LoginService">
+    <classes>
+        <class name="toystore.service.testLoginService"/>
+    </classes>
+</test>
+<test name="RegistrationService">
+    <classes>
+        <class name="toystore.service.testRegistrationService" />
+    </classes>
+</test>
+<test name="ViewItemsByCategoryService">
+    <classes>
+        <class name="toystore.service.testViewItemsByCategoryService"/>
+    </classes>
+</test>
+<test name="ViewItemsService">
+    <classes>
+        <class name="toystore.service.testViewItemsService" />
+    </classes>
+</test>
 </suite>

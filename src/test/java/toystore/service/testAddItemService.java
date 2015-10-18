@@ -10,15 +10,18 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import toystore.App;
+import toystore.domain.Item;
+import toystore.repository.ItemRepository;
 
 @SpringApplicationConfiguration(classes = App.class)
 @WebAppConfiguration
 public class testAddItemService extends AbstractTestNGSpringContextTests {
     @Autowired
     AddItemService addItemService;
+    @Autowired
+    ItemRepository itemRepository;
 
     private boolean bool;
-
     @BeforeMethod
     public void setUp()
     {
@@ -37,6 +40,13 @@ public class testAddItemService extends AbstractTestNGSpringContextTests {
     @AfterMethod
     public void tearDown()
     {
-
+        Long id = Long.parseLong("0");
+        Iterable<Item> items = itemRepository.findAll();
+        for(Item item: items)
+        {
+            if(item.getID()>id)
+                id = item.getID();
+        }
+        itemRepository.delete(id);
     }
 }

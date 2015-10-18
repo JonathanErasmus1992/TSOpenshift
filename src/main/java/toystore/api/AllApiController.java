@@ -44,7 +44,7 @@ public class AllApiController {
     //   return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     //  }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ResponseEntity<Boolean> createCustomer(@RequestParam String username,
                                                   @RequestParam String password,
                                                   @RequestParam String firstname,
