@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import toystore.domain.Customer;
+import toystore.service.AddOrderService;
 import toystore.service.LoginService;
 import toystore.service.RegistrationService;
 
@@ -21,6 +22,8 @@ public class AllApiController {
     RegistrationService registrationService;
     @Autowired
     LoginService loginService;
+    @Autowired
+    AddOrderService addOrderService;
 
 
     // @RequestMapping(value = "/passenger/create",method = RequestMethod.POST)
@@ -69,6 +72,14 @@ public class AllApiController {
             return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<Customer>(customer, HttpStatus.FOUND);
     }
+
+    @RequestMapping(value = "/order/create", method = RequestMethod.GET)
+    public ResponseEntity<Boolean> createOrder(@RequestParam Long customerID)
+    {
+        Boolean bool = addOrderService.addOrder(customerID);
+        return new ResponseEntity<Boolean>(bool, HttpStatus.OK);
+    }
+
 
 
 }
