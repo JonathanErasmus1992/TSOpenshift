@@ -11,7 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import toystore.domain.Customer;
+import toystore.domain.Orders;
 import toystore.service.AddOrderService;
+import toystore.service.GetOrderService;
 import toystore.service.LoginService;
 import toystore.service.RegistrationService;
 
@@ -24,6 +26,8 @@ public class AllApiController {
     LoginService loginService;
     @Autowired
     AddOrderService addOrderService;
+    @Autowired
+    GetOrderService getOrderService;
 
 
     // @RequestMapping(value = "/passenger/create",method = RequestMethod.POST)
@@ -73,11 +77,26 @@ public class AllApiController {
         return new ResponseEntity<Customer>(customer, HttpStatus.FOUND);
     }
 
-    @RequestMapping(value = "/order/create", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/order/create", method = RequestMethod.GET)
     public ResponseEntity<Boolean> createOrder(@RequestParam Long customerID)
     {
-        Boolean bool = addOrderService.addOrder(customerID);
+        boolean bool = addOrderService.addOrder(customerID);
         return new ResponseEntity<Boolean>(bool, HttpStatus.OK);
+    }*/
+
+    @RequestMapping(value = "order/get", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Orders> getOrder(@RequestParam Long customerID)
+    {
+        Orders order = getOrderService.getOrder(customerID);
+        if(order==null)
+        {
+            boolean bool = addOrderService.addOrder(customerID);
+                if(!bool)
+                    return new ResponseEntity<Orders>(HttpStatus.FORBIDDEN);
+            order = getOrderService.getOrder(customerID);
+            return new ResponseEntity<Orders>(order, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<Orders>(order, HttpStatus.FOUND);
     }
 
 
