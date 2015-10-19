@@ -12,6 +12,7 @@ public class Orderline implements OrderlineDetails, Serializable{
     private int quantity;
 
 
+
     private Orderline()
     {
 

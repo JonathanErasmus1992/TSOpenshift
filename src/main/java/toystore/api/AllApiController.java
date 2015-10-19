@@ -16,11 +16,15 @@ import toystore.domain.Item;
 import toystore.domain.Orders;
 import toystore.service.AddItemService;
 import toystore.service.AddOrderService;
+import toystore.service.AddOrderlineService;
 import toystore.service.ChangePasswordService;
+import toystore.service.DeleteOrderlineService;
 import toystore.service.EmptyOrderService;
 import toystore.service.GetOrderService;
+import toystore.service.GetOrderlineService;
 import toystore.service.LoginService;
 import toystore.service.RegistrationService;
+import toystore.service.UpdateOrderlineService;
 import toystore.service.ViewItemsByCategoryService;
 import toystore.service.ViewItemsService;
 
@@ -45,6 +49,14 @@ public class AllApiController {
     ViewItemsByCategoryService viewItemsByCategoryService;
     @Autowired
     ChangePasswordService changePasswordService;
+    @Autowired
+    AddOrderlineService addOrderlineService;
+    @Autowired
+    GetOrderlineService getOrderlineService;
+    @Autowired
+    UpdateOrderlineService updateOrderlineService;
+    @Autowired
+    DeleteOrderlineService deleteOrderlineService;
 
     //USER REGISTRATION
     @RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -135,6 +147,33 @@ public class AllApiController {
         if(!bool)
             return new ResponseEntity<Boolean>(false, HttpStatus.CONFLICT);//customer ID is invalid
         return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+    }
+    //ITS FINALLY HERE - ORDERLINE HANDLER API
+    @RequestMapping(value= "orderline/handle", method = RequestMethod.GET)
+    public ResponseEntity<Boolean> handleOrderline(@RequestParam Long orderID,
+                                                   @RequestParam Long itemID,
+                                                   @RequestParam int quantity)
+    {
+        boolean bool;
+        Long id = getOrderlineService.getOrderlineID(orderID, itemID);
+        if(id==null && quantity != 0) {
+            bool = addOrderlineService.addOrderline(orderID, itemID, quantity);
+            if(!bool)
+                return new ResponseEntity<Boolean>(false, HttpStatus.CONFLICT);//Could not create an Orderline, probably because not enough quantity or the order is already checked out
+            return new ResponseEntity<Boolean>(true, HttpStatus.OK);//New Orderline created successfully
+        }
+        if(quantity==0)
+        {
+            bool = deleteOrderlineService.deleteOrderline(orderID, itemID, id);
+            if(!bool)
+                return new ResponseEntity<Boolean>(false, HttpStatus.CONFLICT);//something went wrong in the deleteOrderlineService
+            return new ResponseEntity<Boolean>(true, HttpStatus.OK);//Deleted Orderline successfully
+        }
+        bool = updateOrderlineService.updateOrderline(orderID, itemID, id, quantity);
+        if(!bool)
+            return new ResponseEntity<Boolean>(false, HttpStatus.CONFLICT);//something went wrong in the updateOrderlineService, probably not enough stock of an item or order is already checked out
+        return new ResponseEntity<Boolean>(true, HttpStatus.OK);//Updated Orderline successfully
+
     }
 
 

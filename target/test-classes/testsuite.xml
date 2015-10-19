@@ -62,6 +62,11 @@
             <class name="toystore.service.testEmptyOrderService" />
         </classes>
     </test>
+    <test name="GetOrderlineService">
+        <classes>
+            <class name ="toystore.service.testGetOrderlineService" />
+        </classes>
+    </test>
     <test name="GetOrderService">
         <classes>
             <class name="toystore.service.testGetOrderService" />
@@ -75,6 +80,11 @@
     <test name="RegistrationService">
         <classes>
             <class name="toystore.service.testRegistrationService" />
+        </classes>
+    </test>
+    <test name="UpdateOrderlineService">
+        <classes>
+            <class name = "toystore.service.testUpdateOrderlineService"/>
         </classes>
     </test>
     <test name="ViewItemsByCategoryService">

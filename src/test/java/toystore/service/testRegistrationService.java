@@ -1,20 +1,17 @@
 package toystore.service;
 
-import org.junit.After;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 import toystore.App;
-import toystore.conf.CustomerFactory;
 import toystore.domain.Customer;
 import toystore.domain.Invoice;
 import toystore.domain.Orders;
@@ -47,7 +44,7 @@ public class testRegistrationService extends AbstractTestNGSpringContextTests{
         Assert.assertFalse(bool);
     }
 
-    @After
+    @AfterMethod
     public void tearDown()
     {
         Long id = Long.parseLong("0");
