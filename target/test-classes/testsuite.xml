@@ -27,6 +27,11 @@
             <class name="toystore.repository.testInvoiceCrudRepository" />
         </classes>
     </test>
+    <test name="AddInvoiceService">
+        <classes>
+            <class name="toystore.service.testAddInvoiceService"/>
+        </classes>
+    </test>
     <test name="AddItemService">
         <classes>
             <class name="toystore.service.testAddItemService" />
@@ -62,19 +67,24 @@
             <class name="toystore.service.testEmptyOrderService" />
         </classes>
     </test>
-    <test name="GetOrderlineService">
+    <test name="GetInvoiceService">
         <classes>
-            <class name ="toystore.service.testGetOrderlineService" />
-        </classes>
-    </test>
-    <test name="GetOrderService">
-        <classes>
-            <class name="toystore.service.testGetOrderService" />
+            <class name="toystore.service.testGetInvoiceService" />
         </classes>
     </test>
     <test name="GetOrderDateService">
         <classes>
             <class name="toystore.service.testGetOrderDateService"/>
+        </classes>
+    </test>
+    <test name="GetOrderlineService">
+        <classes>
+            <class name="toystore.service.testGetOrderlineService" />
+        </classes>
+    </test>
+    <test name="GetOrderService">
+        <classes>
+            <class name="toystore.service.testGetOrderService" />
         </classes>
     </test>
     <test name="LoginService">
@@ -89,7 +99,7 @@
     </test>
     <test name="UpdateOrderlineService">
         <classes>
-            <class name = "toystore.service.testUpdateOrderlineService"/>
+            <class name="toystore.service.testUpdateOrderlineService"/>
         </classes>
     </test>
     <test name="ViewItemsByCategoryService">

@@ -185,7 +185,6 @@ public class AllApiController {
         if(!bool)
             return new ResponseEntity<Boolean>(false, HttpStatus.CONFLICT);//something went wrong in the updateOrderlineService, probably not enough stock of an item or order is already checked out
         return new ResponseEntity<Boolean>(true, HttpStatus.OK);//Updated Orderline successfully
-
     }
 
 }
