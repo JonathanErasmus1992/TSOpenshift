@@ -27,6 +27,11 @@
             <class name="toystore.repository.testInvoiceCrudRepository" />
         </classes>
     </test>
+    <test name="AddInvoiceService">
+        <classes>
+            <class name="toystore.service.testAddInvoiceService"/>
+        </classes>
+    </test>
     <test name="AddItemService">
         <classes>
             <class name="toystore.service.testAddItemService" />

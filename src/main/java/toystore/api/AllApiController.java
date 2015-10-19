@@ -84,7 +84,7 @@ public class AllApiController {
         Customer customer = loginService.Login(username, password);
         //the following code should be added into a service to check if customer exists
         if(customer==null)
-            return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);//customer with that username and password doesn't exist
         return new ResponseEntity<Customer>(customer, HttpStatus.FOUND);
     }
     //GET EXISTING OPEN ORDER ON CUSTOMER OR CREATE A NEW ONE IF ONE DOES NOT EXIST
@@ -96,11 +96,11 @@ public class AllApiController {
         {
             boolean bool = addOrderService.addOrder(customerID);
                 if(!bool)
-                    return new ResponseEntity<Orders>(HttpStatus.FORBIDDEN);
+                    return new ResponseEntity<Orders>(HttpStatus.FORBIDDEN);//This should never ever happen but if it does then this is here
             order = getOrderService.getOrder(customerID);
-            return new ResponseEntity<Orders>(order, HttpStatus.CREATED);
+            return new ResponseEntity<Orders>(order, HttpStatus.CREATED);//Creates a new order if one doesn't exist for this customer
         }
-        return new ResponseEntity<Orders>(order, HttpStatus.FOUND);
+        return new ResponseEntity<Orders>(order, HttpStatus.FOUND);//returns uncheckedout order for this customer
     }
     //GET ORDER DATE AS STRING
     @RequestMapping(value = "order/getdate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -187,6 +187,5 @@ public class AllApiController {
         return new ResponseEntity<Boolean>(true, HttpStatus.OK);//Updated Orderline successfully
 
     }
-
 
 }

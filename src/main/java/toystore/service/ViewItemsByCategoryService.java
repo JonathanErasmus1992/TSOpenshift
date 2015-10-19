@@ -14,13 +14,11 @@ public class ViewItemsByCategoryService implements ViewItemsByCategoryDetails {
     @Autowired
     ItemRepository itemRepository;
 
-    private List<Item> items = new ArrayList<Item>();
-    private Iterable<Item> iitems;
-
     @Override
     public List<Item> viewItemsByCategory(String category)
     {
-        iitems = itemRepository.findAll();
+        List<Item> items = new ArrayList<Item>();
+        Iterable<Item> iitems = itemRepository.findAll();
         for(Item item: iitems)
         {
             if(item.getCategory().equalsIgnoreCase(category))

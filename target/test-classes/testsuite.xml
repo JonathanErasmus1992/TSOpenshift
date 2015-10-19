@@ -72,6 +72,11 @@
             <class name="toystore.service.testGetOrderService" />
         </classes>
     </test>
+    <test name="GetOrderDateService">
+        <classes>
+            <class name="toystore.service.testGetOrderDateService"/>
+        </classes>
+    </test>
     <test name="LoginService">
         <classes>
             <class name="toystore.service.testLoginService"/>
