@@ -20,6 +20,7 @@ import toystore.service.AddOrderlineService;
 import toystore.service.ChangePasswordService;
 import toystore.service.DeleteOrderlineService;
 import toystore.service.EmptyOrderService;
+import toystore.service.GetOrderDateService;
 import toystore.service.GetOrderService;
 import toystore.service.GetOrderlineService;
 import toystore.service.LoginService;
@@ -39,6 +40,8 @@ public class AllApiController {
     AddOrderService addOrderService;
     @Autowired
     GetOrderService getOrderService;
+    @Autowired
+    GetOrderDateService getOrderDateService;
     @Autowired
     EmptyOrderService emptyOrderService;
     @Autowired
@@ -98,6 +101,15 @@ public class AllApiController {
             return new ResponseEntity<Orders>(order, HttpStatus.CREATED);
         }
         return new ResponseEntity<Orders>(order, HttpStatus.FOUND);
+    }
+    //GET ORDER DATE AS STRING
+    @RequestMapping(value = "order/getdate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getOrderDate(@RequestParam Long orderID)
+    {
+        String date = getOrderDateService.getOrderDate(orderID);
+        if(date==null)
+            return new ResponseEntity<String>(HttpStatus.NOT_FOUND);//Something is wrong with getOrderDateService or the orderID doesn't exist
+        return new ResponseEntity<String>(date, HttpStatus.FOUND);
     }
     //DELETE EXISTING ORDER
     @RequestMapping(value = "order/delete", method = RequestMethod.GET)

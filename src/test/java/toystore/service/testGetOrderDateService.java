@@ -1,0 +1,53 @@
+package toystore.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
+import java.util.Date;
+import java.util.List;
+
+import toystore.App;
+import toystore.conf.OrderFactory;
+import toystore.domain.Orderline;
+import toystore.domain.Orders;
+import toystore.repository.OrderRepository;
+
+@SpringApplicationConfiguration(classes = App.class)
+@WebAppConfiguration
+public class testGetOrderDateService extends AbstractTestNGSpringContextTests{
+    @Autowired
+    GetOrderDateService getOrderDateService;
+    @Autowired
+    OrderRepository orderRepository;
+
+    private Orders order;
+    private Long id;
+    private String date;
+    private List<Orderline> orderlines;
+    @BeforeMethod
+    public void setUp()
+    {
+        order = OrderFactory.createOrder(new Date(), 200, false, orderlines);
+        orderRepository.save(order);
+        id = order.getID();
+    }
+
+    @Test
+    public void testGetOrderDate()
+    {
+        date = getOrderDateService.getOrderDate(id);
+        Assert.assertNotNull(date);
+    }
+
+    @AfterMethod
+    public void tearDown()
+    {
+        orderRepository.delete(order);
+    }
+}
