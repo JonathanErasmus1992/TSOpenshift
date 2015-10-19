@@ -12,14 +12,18 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 import toystore.domain.Customer;
+import toystore.domain.Invoice;
 import toystore.domain.Item;
 import toystore.domain.Orders;
+import toystore.service.AddInvoiceService;
 import toystore.service.AddItemService;
 import toystore.service.AddOrderService;
 import toystore.service.AddOrderlineService;
 import toystore.service.ChangePasswordService;
+import toystore.service.CheckoutOrderService;
 import toystore.service.DeleteOrderlineService;
 import toystore.service.EmptyOrderService;
+import toystore.service.GetInvoiceService;
 import toystore.service.GetOrderDateService;
 import toystore.service.GetOrderService;
 import toystore.service.GetOrderlineService;
@@ -60,6 +64,12 @@ public class AllApiController {
     UpdateOrderlineService updateOrderlineService;
     @Autowired
     DeleteOrderlineService deleteOrderlineService;
+    @Autowired
+    AddInvoiceService addInvoiceService;
+    @Autowired
+    GetInvoiceService getInvoiceService;
+    @Autowired
+    CheckoutOrderService checkoutOrderService;
 
     //USER REGISTRATION
     @RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -119,6 +129,22 @@ public class AllApiController {
         if(!bool)
             return new ResponseEntity<Boolean>(false, HttpStatus.CONFLICT);//order id not found - has already been deleted
         return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+    }
+    //CHECKOUT ORDER
+    @RequestMapping(value = "order/checkout", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Invoice> checkoutOrder(@RequestParam Long orderID,
+                                                 @RequestParam Long customerID)
+    {
+        Long id = addInvoiceService.addInvoice(customerID, orderID);
+        if(id==null)
+            return new ResponseEntity<Invoice>(HttpStatus.NOT_FOUND);//customer id or order id not found, does not exist in the database
+        boolean bool = checkoutOrderService.checkoutOrder(orderID);
+        if(!bool)
+            return new ResponseEntity<Invoice>(HttpStatus.CONFLICT);//order has already been checked out; probably
+        Invoice invoice = getInvoiceService.getInvoice(id);
+        if(invoice==null)
+            return new ResponseEntity<Invoice>(HttpStatus.NOT_FOUND);//the addInvoiceService didn't add the invoice to the database for some reason
+        return new ResponseEntity<Invoice>(invoice, HttpStatus.OK);
     }
     //ADD NEW ITEM
     @RequestMapping(value = "item/add", method = RequestMethod.GET)
