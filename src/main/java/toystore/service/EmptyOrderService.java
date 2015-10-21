@@ -3,6 +3,7 @@ package toystore.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,18 +24,20 @@ public class EmptyOrderService implements EmptyOrderDetails{
     @Override
     public boolean emptyOrder(Long id)
     {
+        orderlines = new ArrayList<Orderline>();
         orders = orderRepository.findOne(id);
         if(orders.getCheckout())
             return false;
         for(Orderline orderline: orders.getOrderlines())
             orderlineRepository.delete(orderline);
         orders = new Orders
-                    .Builder(orders.getDateModified())
-                    .copy(orders)
-                    .dateModified(new Date())
-                    .totalPrice(0)
-                    .orderlines(orderlines)
-                    .build();
+                .Builder(orders.getDateModified())
+                .copy(orders)
+                .dateModified(new Date())
+                .totalPrice(0)
+                .orderlines(orderlines)
+                .build();
+        orderRepository.save(orders);
         return true;
     }
 }
