@@ -21,6 +21,7 @@ import toystore.service.AddOrderService;
 import toystore.service.AddOrderlineService;
 import toystore.service.ChangePasswordService;
 import toystore.service.CheckoutOrderService;
+import toystore.service.DeleteCustomerService;
 import toystore.service.DeleteOrderlineService;
 import toystore.service.EmptyOrderService;
 import toystore.service.GetInvoiceService;
@@ -29,6 +30,7 @@ import toystore.service.GetOrderService;
 import toystore.service.GetOrderlineService;
 import toystore.service.LoginService;
 import toystore.service.RegistrationService;
+import toystore.service.UpdateItemService;
 import toystore.service.UpdateOrderlineService;
 import toystore.service.ViewItemsByCategoryService;
 import toystore.service.ViewItemsService;
@@ -70,6 +72,10 @@ public class AllApiController {
     GetInvoiceService getInvoiceService;
     @Autowired
     CheckoutOrderService checkoutOrderService;
+    @Autowired
+    DeleteCustomerService deleteCustomerService;
+    @Autowired
+    UpdateItemService updateItemService;
 
     //USER REGISTRATION
     @RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -97,6 +103,18 @@ public class AllApiController {
             return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);//customer with that username and password doesn't exist
         return new ResponseEntity<Customer>(customer, HttpStatus.FOUND);
     }
+
+    //DELETE USER
+    @RequestMapping(value ="customer/delete", method = RequestMethod.GET)
+    public ResponseEntity<Boolean> deleteCustomer(@RequestParam Long customerid)
+    {
+        boolean bool = deleteCustomerService.deleteCustomer(customerid);
+        if(!bool)
+            return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);//customerid didn't correspond with any existing customers
+        return new ResponseEntity<Boolean>(true, HttpStatus.FOUND);
+
+    }
+
     //GET EXISTING OPEN ORDER ON CUSTOMER OR CREATE A NEW ONE IF ONE DOES NOT EXIST
     @RequestMapping(value = "order/get", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Orders> getOrder(@RequestParam Long customerID)
@@ -176,6 +194,29 @@ public class AllApiController {
             return new ResponseEntity<List<Item>>(HttpStatus.NOT_FOUND);//No items with that category exist
         return new ResponseEntity<List<Item>>(items, HttpStatus.FOUND);
     }
+
+    //UPDATE EXISTING ITEM PRICE
+    @RequestMapping(value = "item/update/stock", method = RequestMethod.GET)
+    public ResponseEntity<Boolean> updateItemStock(@RequestParam Long itemID,
+                                                   @RequestParam int addQuantity)
+    {
+        boolean bool = updateItemService.updateItemStock(itemID, addQuantity);
+        if(!bool)
+            return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);//item of itemid does not exist in the database
+        return new ResponseEntity<Boolean>(true, HttpStatus.FOUND);
+    }
+
+    //UPDATE EXISTING ITEM STOCK
+    @RequestMapping(value = "item/update/price", method = RequestMethod.GET)
+    public ResponseEntity<Boolean> updateItemPrice(@RequestParam Long itemID,
+                                                   @RequestParam float newPrice)
+    {
+        boolean bool = updateItemService.updateItemPrice(itemID, newPrice);
+        if(!bool)
+            return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);//item of itemid does not exist in the database
+        return new ResponseEntity<Boolean>(true, HttpStatus.FOUND);
+    }
+
     //CHANGE PASSWORD
     @RequestMapping(value = "customer/changepassword", method = RequestMethod.GET)
     public ResponseEntity<Boolean> changePassword(@RequestParam Long customerID,

@@ -50,19 +50,19 @@ public class AddOrderlineService implements AddOrderlineDetails {
         orderlinesi.add(orderline);
 
         order = new Orders
-                    .Builder(order.getDateModified())
-                    .copy(order)
-                    .dateModified(new Date())
-                    .orderlines(orderlineso)
-                    .totalPrice(order.getTotalPrice() + (item.getPrice() * quantity))
-                    .build();
+                .Builder(order.getDateModified())
+                .copy(order)
+                .dateModified(new Date())
+                .orderlines(orderlineso)
+                .totalPrice(order.getTotalPrice() + (item.getPrice() * quantity))
+                .build();
 
         item = new Item
-                    .Builder(item.getName())
-                    .copy(item)
-                    .orderlines(orderlinesi)
-                    .quantity(item.getQuantity()-quantity)
-                    .build();
+                .Builder(item.getName())
+                .copy(item)
+                .orderlines(orderlinesi)
+                        //.quantity(item.getQuantity()-quantity)//do this in checkout Order Service
+                .build();
         orderRepository.save(order);
         itemRepository.save(item);
         return true;
