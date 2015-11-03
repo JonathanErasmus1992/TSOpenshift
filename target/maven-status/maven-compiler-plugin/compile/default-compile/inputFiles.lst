@@ -11,6 +11,7 @@ C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\
 C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\service\ViewItemsService.java
 C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\conf\OrderlineFactory.java
 C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\service\DeleteCustomerDetails.java
+C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\service\UpdateItemService.java
 C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\service\AddOrderlineDetails.java
 C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\service\LoginService.java
 C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\repository\OrderRepository.java
@@ -21,6 +22,7 @@ C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\
 C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\service\DeleteOrderlineService.java
 C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\service\AddItemStockDetails.java
 C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\domain\InvoiceDetails.java
+C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\service\UpdateItemDetails.java
 C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\service\AddOrderlineService.java
 C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\service\GetOrderlineService.java
 C:\Users\user\Desktop\Integrated Project\Project\Backend\src\main\java\toystore\service\GetOrderDateService.java
